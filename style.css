@@ -1,81 +1,214 @@
-@import url("https://use.typekit.net/jmk3xov.css");
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
+/* Box sizing rules */
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  transition: all .2s linear;
 }
 
-
-:root {
-  --dark-bg: rgba(220, 103, 13, 0.95);
-  --spacing: 350px;
-
-  font-family: brandon-grotesque, sans-serif;
-  font-weight: 400;
-  font-style: normal;
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
 }
 
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
 
-main {
-  width: 100vw;
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: black;
   color: white;
-  z-index: 99;
+  font-family: "Rajdhani", sans-serif;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 112px;
+}
+
+p {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+a {
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 61px;
+  text-decoration: none;
+  color: white;
+}
+
+
+.hero{
+    display: flex;
+    flex-direction: row;
+    margin: 96px;
+    padding: 96px;
+    gap: 96px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.logo{
+    min-height: 500px;
+    min-width: 238px;
+}
+.greet{
+    display: flex;
+    flex-direction: column;
+    max-width: 90ch;
+}
+
+.name {
+  position: relative;
+  display: inline-block;
+}
+
+.name::after {
+  content: "";
   position: absolute;
   width: 100%;
-  margin: 0px auto;
-  padding: 120px 0px;
-  
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-}
-
-h1, h2, h3, blockquote {
-  font-family: elevon, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-canvas {
-  position: fixed;
-  top: 0;
+  height: 3px;
+  bottom: 0.2em;
   left: 0;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  background-size: 200% 3px;
+  animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 
+.container{
+    display: flex;
+    flex-direction: column;
+    margin: 96px;
+    gap: 40px;
+    padding: 96px;
+    overflow: hidden;
+}
 
-  header {
-    background: var(--dark-bg);
-    grid-column: 2 / span 5;
-    font-size: 2.5rem;
-    padding: 2rem;
-    margin-bottom: var(--spacing);
+.container .text:hover{
+  color:#fff;
+  position: relative;
+  z-index: 2;
+  cursor: zoom-in;
+  text-shadow: 0 5px 10px rgba(0,0,0,.7);
+}
+
+.container .text:hover ~ .hover-img{
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  border-radius: 16px;
+}
+
+.hover-img{
+  position: absolute;
+  top:0; left:0;
+  transform: translate(-50%, -50%) scale(.75);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    margin: 96px;
+    align-items: center;
+    justify-content: center;
+    gap: 128px;
+
+}
+
+@media only screen and (max-width: 1079px) {
+   .hero{
+    flex-direction: column-reverse;
+   }
   }
 
-  section {
-    grid-column: 2 / 8;
-    padding: 1rem;
-    background: var(--dark-bg);
-    font-size: 1.25rem;
-    line-height: 1.5;
-    margin-bottom: var(--spacing);
-  }
+  @media only screen and (max-width: 630px) {
+    .hero{
+      margin: 48px;
+      padding: 0;
+    }
+    .container{
+      margin: 48px;
+      padding: 0;
+    }
+    .footer{
+     flex-direction: column;
+     gap: 32px;
+     margin: 48px;
+    }
+   }
 
-  blockquote {
-    margin: 0;
-    padding: 0;
-    grid-column: 2 / span 9;
-    margin-bottom: var(--spacing);
-  }
 
-  blockquote p {
-    color: black;
-    background-color: white;
-    font-size: 4rem;
-    display: inline;
-    line-height: 1;
-  }
-
-  .left {
-    grid-column: 6 / 12;
-  }
